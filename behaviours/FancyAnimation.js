@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LottieView from "lottie-react-native";
 import { Button, View } from "react-native";
 
@@ -6,9 +6,10 @@ export default function FancyAnimation() {
   const animatedElRef = useRef();
 
   useEffect(() => {
-    console.log("animatedElRef", animatedElRef.current.play);
     animatedElRef.current.play();
   }, []);
+
+  // based on status update, can use this to progress the animation?
 
   return (
     <>

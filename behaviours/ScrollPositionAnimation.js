@@ -8,6 +8,7 @@ import {
   FlatList,
   Image,
   SafeAreaView,
+  Button,
 } from "react-native";
 import { mockData } from "./data";
 
@@ -26,7 +27,7 @@ const ImageCard = ({ data }) => {
 /**
  * Manipulates the progress of the lottie animation based on scroll position of the list.
  */
-export default function FancyAnimation() {
+export default function ScrollPositionAnimation({ navigation }) {
   const animatedElRef = useRef();
 
   const scrollPosition = useRef(new Animated.Value(0)).current;
@@ -48,10 +49,7 @@ export default function FancyAnimation() {
             autoPlay={false}
             style={{
               width: "100%",
-              height: 100,
-              aspectRatio: 3.85,
             }}
-            resizeMode="cover"
             progress={scrollPosition.interpolate({
               inputRange: [0, 1],
               outputRange: [0, 1],
@@ -65,6 +63,10 @@ export default function FancyAnimation() {
           onScroll={handleScroll}
           keyExtractor={(item) => item?.key}
           renderItem={({ item }) => <ImageCard data={item} />}
+        />
+        <Button
+          title="Go to matching"
+          onPress={() => navigation.navigate("Matching")}
         />
       </SafeAreaView>
     </>
