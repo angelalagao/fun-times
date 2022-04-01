@@ -7,6 +7,7 @@ import {
   StyleSheet,
   FlatList,
   Image,
+  SafeAreaView,
 } from "react-native";
 import { mockData } from "./data";
 
@@ -22,33 +23,64 @@ const ImageCard = ({ data }) => {
   );
 };
 
+/**
+ * Manipulates the progress of the lottie animation based on scroll position of the list.
+ */
 export default function FancyAnimation() {
   const animatedElRef = useRef();
 
-  // useEffect(() => {
-  //   console.log("animatedElRef", animatedElRef.current.play);
-  //   animatedElRef.current.play();
-  // }, []);
+  const scrollPosition = useRef(new Animated.Value(0)).current;
+  const handleScroll = ({ nativeEvent }) => {
+    const calculatedScrollPosition =
+      nativeEvent.contentOffset.y /
+      (nativeEvent.contentSize.height - nativeEvent.layoutMeasurement.height);
+    scrollPosition.setValue(calculatedScrollPosition);
+  };
 
   return (
     <>
-      <LottieView
-        ref={animatedElRef}
-        source={require("../assets/progress_bar.json")}
-        loop={false}
-        autoPlay={false}
-      />
-      <FlatList
-        // showsVerticalScrollIndicator={false}
-        data={mockData}
-        keyExtractor={(item) => item?.key}
-        renderItem={({ item }) => <ImageCard data={item} />}
-      />
+      <SafeAreaView style={styles.container}>
+        <View style={styles.header}>
+          <LottieView
+            ref={animatedElRef}
+            source={require("../assets/progress_bar.json")}
+            loop={false}
+            autoPlay={false}
+            style={{
+              width: "100%",
+              height: 100,
+              aspectRatio: 3.85,
+            }}
+            resizeMode="cover"
+            progress={scrollPosition.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 1],
+              extrapolate: "clamp",
+            })}
+          />
+        </View>
+        <FlatList
+          data={mockData}
+          scrollEventThrottle={1}
+          onScroll={handleScroll}
+          keyExtractor={(item) => item?.key}
+          renderItem={({ item }) => <ImageCard data={item} />}
+        />
+      </SafeAreaView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+    backgroundColor: "#fff",
+  },
+  header: {
+    zIndex: 1,
+  },
   itemImage: {
     height: 400,
     width: "100%",
