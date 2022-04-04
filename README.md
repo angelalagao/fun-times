@@ -1,4 +1,4 @@
-# [Moti Example](https://moti.fyi/)
+# Fun Times - Animation Playground
 
 <p>
   <!-- iOS -->
@@ -17,7 +17,7 @@
 
 ## 🚀 How to use
 
-> `npx create-react-native-app -t with-moti`
+> `npx create-react-native-app -t fun-times`
 
 - Install packages with `yarn` or `npm install`.
   - If you have native iOS code run `npx pod-install`
@@ -27,15 +27,6 @@
   - Android: [Client Android](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=blankexample)
 
 > 💡 This demo uses **experimental** Reanimated 2 support in Expo. [Learn more](https://docs.expo.dev/versions/latest/sdk/reanimated/#experimental-support-for-v2).
-
-### TypeScript
-
-Moti is built with TypeScript and has first-class support. Here's how to add TS support to your project:
-
-- Rename `App.js` ➜ `App.tsx`
-- Run `expo start` -- TypeScript will be automatically configured.
-
-> 💡 Learn more about [TypeScript in Expo](https://docs.expo.dev/guides/typescript/)
 
 ### Adding Native Code
 
@@ -52,7 +43,8 @@ This project can be run from a web browser or the Expo client app. You may find 
 
 ## 📝 Notes
 
+- [Expo Lottie React Native docs](https://docs.expo.dev/versions/latest/sdk/lottie/)
+- [Lottie React Native docs](https://github.com/lottie-react-native/lottie-react-native)
 - [Expo Reanimated docs](https://docs.expo.dev/versions/latest/sdk/reanimated)
 - [Moti docs](https://moti.fyi/)
 - [Reanimated docs](https://docs.swmansion.com/react-native-reanimated/docs/2.0.0-alpha.8/)
-- Keep up with the creator of Moti [Fernando Rojo](https://twitter.com/FernandoTheRojo) for updates.
